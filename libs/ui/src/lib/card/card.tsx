@@ -3,7 +3,7 @@ import styles from './card.module.scss';
 
 export interface CardProps {
   title: string;
-  description: string;
+  description?: string;
   children?: ReactNode;
 }
 

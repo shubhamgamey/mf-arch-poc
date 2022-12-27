@@ -1,13 +1,17 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
-import NxWelcome from './nx-welcome';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Route, Routes } from 'react-router-dom';
+import Planet from '../component/Planet';
+import Planets from '../component/Planets';
 
-export function App() {
+export function App(props: { queryClient: QueryClient }) {
+
   return (
-    <>
-      <NxWelcome title="planets" />
-      <div />
-    </>
+    <QueryClientProvider client={props.queryClient}>
+      <Routes>
+        <Route index element={<Planets />} />
+        <Route path="/:id" element={<Planet />} />
+      </Routes>
+    </QueryClientProvider>
   );
 }
 

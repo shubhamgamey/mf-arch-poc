@@ -3,10 +3,7 @@ import styles from './app.module.scss';
 import { Route, Routes } from 'react-router-dom';
 import { Header, Nav } from '@ui';
 import Home from '../components/Home';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from 'react-query'
+import { QueryClient } from 'react-query';
 
 const Films = React.lazy(() => import('films/Module'));
 
@@ -37,24 +34,26 @@ const queryClient = new QueryClient();
 export function App() {
   return (
     <React.Suspense fallback={null}>
-      <QueryClientProvider client={queryClient}>
-        <Header />
-        <div className={styles.container}>
-          <Nav listItems={listItems} />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
+      <Header />
+      <div className={styles.container}>
+        <Nav listItems={listItems} />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
 
+            <Route
+              path="/films/*"
+              element={<Films queryClient={queryClient} />}
+            />
+            <Route
+              path="/planets/*"
+              element={<Planets queryClient={queryClient} />}
+            />
 
-              <Route path="/films/*" element={<Films />} />
-
-              <Route path="/planets" element={<Planets />} />
-
-              <Route path="/starships" element={<Starships />} />
-            </Routes>
-          </main>
-        </div>
-      </QueryClientProvider>
+            <Route path="/starships" element={<Starships />} />
+          </Routes>
+        </main>
+      </div>
     </React.Suspense>
   );
 }

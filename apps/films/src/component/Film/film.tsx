@@ -19,8 +19,7 @@ const getFilm = async (id: string | undefined) => {
 
 const Film = () => {
   const { id } = useParams<{ id: string }>();
-
-  const { isLoading, data } = useQuery<Film>('film', () => getFilm(id), { staleTime: Infinity });
+  const { isLoading, data } = useQuery<Film>(`film/${id}`, () => getFilm(id), { staleTime: Infinity });
 
   if (isLoading || !data) return <Loading />
 
