@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  align-items: center;
+  width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+main {
+  width: 50%;
+}

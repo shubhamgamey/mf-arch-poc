@@ -1,0 +1,36 @@
+.nav {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  width: 25%;
+  background-color: #212529;
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.listItem {
+  color: rgba(255, 255, 255, 0.55);
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+.listItemActive {
+  color: #fff;
+}

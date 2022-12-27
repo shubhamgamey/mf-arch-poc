@@ -1,0 +1,23 @@
+.card {
+  background-color: unset;
+  box-shadow: 0 0 7px 2px #3b3b9f;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+
+  padding: 1rem;
+}
+
+.desc {
+  padding: 1rem 0;
+}
+
+.info {
+  color: #6c757d;
+}

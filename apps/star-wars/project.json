@@ -1,0 +1,102 @@
+{
+  "name": "star-wars",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/star-wars/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/star-wars",
+        "index": "apps/star-wars/src/index.html",
+        "baseHref": "/",
+        "main": "apps/star-wars/src/main.ts",
+        "polyfills": "apps/star-wars/src/polyfills.ts",
+        "tsConfig": "apps/star-wars/tsconfig.app.json",
+        "assets": [
+          "apps/star-wars/src/favicon.ico",
+          "apps/star-wars/src/assets"
+        ],
+        "styles": ["apps/star-wars/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/star-wars/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/star-wars/src/environments/environment.ts",
+              "with": "apps/star-wars/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/star-wars/webpack.config.prod.js"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "star-wars:build",
+        "hmr": true,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "star-wars:build:development"
+        },
+        "production": {
+          "buildTarget": "star-wars:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/star-wars/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/star-wars/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "star-wars:build",
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "star-wars:build:development"
+        },
+        "production": {
+          "buildTarget": "star-wars:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

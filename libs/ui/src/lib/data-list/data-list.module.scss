@@ -1,0 +1,24 @@
+.dataList {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: 0.25rem;
+}
+
+.dataListItem {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  position: relative;
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  color: #FFF;
+  background-color: unset;
+  cursor: pointer;
+  &:hover {
+    background-color: #4e5966;
+  }
+}

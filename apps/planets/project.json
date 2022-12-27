@@ -1,0 +1,99 @@
+{
+  "name": "planets",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/planets/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/planets",
+        "index": "apps/planets/src/index.html",
+        "baseHref": "/",
+        "main": "apps/planets/src/main.ts",
+        "polyfills": "apps/planets/src/polyfills.ts",
+        "tsConfig": "apps/planets/tsconfig.app.json",
+        "assets": ["apps/planets/src/favicon.ico", "apps/planets/src/assets"],
+        "styles": ["apps/planets/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/planets/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/planets/src/environments/environment.ts",
+              "with": "apps/planets/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/planets/webpack.config.prod.js"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "planets:build",
+        "hmr": true,
+        "port": 4202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "planets:build:development"
+        },
+        "production": {
+          "buildTarget": "planets:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/planets/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/planets/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "planets:build",
+        "port": 4202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "planets:build:development"
+        },
+        "production": {
+          "buildTarget": "planets:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
