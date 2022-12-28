@@ -17,7 +17,7 @@ const getFilms = async () => {
 const Films = () => {
   const { isLoading, data } = useQuery<Array<Film>>('films', getFilms, { staleTime: Infinity });
 
-  if (isLoading || !data) return <Loading />
+  if (isLoading || !data) return <Loading />;
 
   return (
     <div>

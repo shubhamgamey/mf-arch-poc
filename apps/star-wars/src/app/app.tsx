@@ -50,7 +50,11 @@ export function App() {
               element={<Planets queryClient={queryClient} />}
             />
 
-            <Route path="/starships" element={<Starships />} />
+            <Route
+              path="/starships/*"
+              element={<Starships queryClient={queryClient} />}
+            />
+
           </Routes>
         </main>
       </div>

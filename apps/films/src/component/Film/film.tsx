@@ -23,7 +23,6 @@ const Film = () => {
 
   if (isLoading || !data) return <Loading />
 
-  console.log(data)
   return (
     <Card title={data.title} description={data.opening_crawl}>
       <FilmInfo {...data} />
